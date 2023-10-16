@@ -1,10 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.TextCore.Text;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
     public int life = 5;
+    private int playerScore = 0;
     public float moveSpeed = 10f;
     public Rigidbody2D rb;
    
@@ -18,6 +21,10 @@ public class PlayerController : MonoBehaviour
 
     public Transform skin;
 
+    public Text playerLife;
+    public Text playerScoreText;
+
+
     // Update is called once per frame
     void Update()
     {
@@ -30,6 +37,9 @@ public class PlayerController : MonoBehaviour
         }
 
         moveDirection = new Vector2(moveX, moveY).normalized;
+
+        playerLife.text = "x" + life.ToString();
+        playerScoreText.text = playerScore.ToString() + " pontos";
 
     }
 
@@ -59,8 +69,22 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public void scoreUp(int points)
+    {
+        playerScore += points;
+    }
+
     void OnExplosionAnimationFinished()
     {
         Destroy(gameObject);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Enemy"))
+        {
+            Damage(1);
+            collision.GetComponent<EnemyController>().Damage(1);
+        }
     }
 }

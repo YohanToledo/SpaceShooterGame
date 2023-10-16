@@ -16,10 +16,13 @@ public class EnemyController : MonoBehaviour
     private float fireDelay;
     private float time = 0;
 
+    private PlayerController playerController;
+
 
     void Start()
     {
         fireDelay = Random.Range(1f, 2.3f);
+        playerController = GameObject.Find("Player").GetComponent<PlayerController>();
     }
 
     void Update()
@@ -51,9 +54,13 @@ public class EnemyController : MonoBehaviour
     public void Damage(int damage)
     {
         life -= damage;
+        playerController.scoreUp(10);
+
 
         if (life <= 0)
         {
+            this.enabled = false;
+            GetComponent<BoxCollider2D>().enabled = false;
             skin.GetComponent<Animator>().Play("Explosion", -1);
             Invoke("OnExplosionAnimationFinished", 0.5f);
         }

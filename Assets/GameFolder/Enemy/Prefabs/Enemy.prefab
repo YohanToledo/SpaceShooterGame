@@ -200,7 +200,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   life: 1
   skin: {fileID: 1071245131460167254}
-  bulletPrefab: {fileID: 4003276719915975116, guid: b040d73e57ef8744cac401bfc6da6ccd, type: 3}
+  bulletPrefab: {fileID: 1255721306730872040, guid: 7d383b7ce62f63640a099132c4f27ebb, type: 3}
   firePoint: {fileID: 1908363715285784409}
   fireForce: 8
 --- !u!1 &7448366473669435427
