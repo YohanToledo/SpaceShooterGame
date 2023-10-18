@@ -11,7 +11,7 @@ public class EnemyController : MonoBehaviour
     public GameObject bulletPrefab;
     public Transform firePoint;
     public float fireForce = 5f;
-    private float moveSpeed = 0.5f;
+    private float moveSpeed = 0.6f;
 
     private float fireDelay;
     private float time = 0;
@@ -21,7 +21,7 @@ public class EnemyController : MonoBehaviour
 
     void Start()
     {
-        fireDelay = Random.Range(1f, 2.3f);
+        fireDelay = Random.Range(0.9f, 2.6f);
         playerController = GameObject.Find("Player").GetComponent<PlayerController>();
     }
 

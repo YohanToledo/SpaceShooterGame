@@ -18,7 +18,7 @@ public class SpawnerController : MonoBehaviour
     void Update()
     {
         //change queue time to 5 seconds
-        queueTime = 5f;
+        queueTime = 6f;
 
         if (time > queueTime)
         {
