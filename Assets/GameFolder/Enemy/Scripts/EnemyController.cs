@@ -11,7 +11,7 @@ public class EnemyController : MonoBehaviour
     public GameObject bulletPrefab;
     public Transform firePoint;
     public float fireForce = 5f;
-    private float moveSpeed = 0.8f;
+    private float moveSpeed = 0.5f;
 
     private float fireDelay;
     private float time = 0;
