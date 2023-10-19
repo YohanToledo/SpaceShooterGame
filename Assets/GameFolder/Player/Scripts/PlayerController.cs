@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.TextCore.Text;
 using UnityEngine.UI;
 
@@ -24,6 +25,14 @@ public class PlayerController : MonoBehaviour
     public Text playerLife;
     public Text playerScoreText;
 
+    public GameObject gameOverScreen;
+    
+
+    private void Start()
+    {
+        DontDestroyOnLoad(transform.gameObject);
+    }
+
 
     // Update is called once per frame
     void Update()
@@ -41,12 +50,17 @@ public class PlayerController : MonoBehaviour
         playerLife.text = "x" + life.ToString();
         playerScoreText.text = playerScore.ToString() + " pontos";
 
+
+        if(playerScore >= 30)
+        {
+            SceneManager.LoadScene("Fase2");
+        }
+
     }
 
     private void FixedUpdate()
     {
         rb.velocity = new Vector2(moveDirection.x * moveSpeed, moveDirection.y * moveSpeed);
-
     }
 
 
@@ -75,6 +89,14 @@ public class PlayerController : MonoBehaviour
     }
 
     void OnExplosionAnimationFinished()
+    {
+        DestroyPlayer();
+        Time.timeScale = 0f;
+        gameOverScreen.SetActive(true);
+
+    }
+
+    public void DestroyPlayer()
     {
         Destroy(gameObject);
     }
