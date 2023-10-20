@@ -2,9 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class BulletController : MonoBehaviour
 {
+    private string currentScene;
+
+    private void Start()
+    {
+        currentScene = SceneManager.GetActiveScene().name;
+    }
+    private void Update()
+    {
+        if (!SceneManager.GetActiveScene().name.Equals(currentScene))
+        {
+            Destroy(gameObject);
+        }
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {

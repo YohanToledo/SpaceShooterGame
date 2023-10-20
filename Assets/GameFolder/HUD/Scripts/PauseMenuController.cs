@@ -6,36 +6,52 @@ using UnityEngine.SceneManagement;
 public class PauseMenuController : MonoBehaviour
 {
 
-    [SerializeField] GameObject pauseMenu;
-
-    private void Start()
+    private void OnEnable()
     {
-        Pause();
+        GetComponent<CanvasGroup>().alpha = 1;
+        GetComponent<CanvasGroup>().blocksRaycasts = true;
+        Time.timeScale = 0;
     }
 
-    private void Update()
+    private void OnDisable()
     {
-        if (Input.GetButtonDown("Cancel"))
-        {
-            Pause();
-        }
+        Time.timeScale = 1;
+        GetComponent<CanvasGroup>().alpha = 0;
+        GetComponent<CanvasGroup>().blocksRaycasts = false;
     }
 
-    public void Pause()
-    {
-        pauseMenu.SetActive(true);
-        Time.timeScale = 0f;
-    }
+    //[SerializeField] GameObject pauseMenu;
 
-    public void Resume()
-    {
-        pauseMenu.SetActive(false);
-        Time.timeScale = 1.0f;
-    }
+    //private bool isGamePaused;
 
-    public void Home(int sceneID)
+    //private void Start()
+    //{
+    //    isGamePaused = false;
+    //}
+
+    //private void Update()
+    //{
+    //    if (Input.GetButtonDown("Cancel"))
+    //    {
+    //        Pause();
+    //    }
+    //}
+
+    //public void Pause()
+    //{
+    //    pauseMenu.SetActive(!isGamePaused);
+    //    Time.timeScale = 0f;
+    //}
+
+   public void Resume()
+   {
+        this.enabled = false;
+        
+   }
+
+   public void Restart(int sceneID)
     {
-        Time.timeScale = 1.0f;
-        SceneManager.LoadScene(sceneID);
+       Time.timeScale = 1.0f;
+       SceneManager.LoadScene(sceneID);
     }
 }

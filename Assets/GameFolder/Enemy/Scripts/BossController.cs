@@ -2,16 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyController : MonoBehaviour
+public class BossController : MonoBehaviour
 {
 
-    public int life = 1;
+    private int life = 20;
     public Transform skin;
 
     public GameObject bulletPrefab;
-    public Transform firePoint;
-    public float fireForce = 5f;
-    private float moveSpeed = 0.6f;
+    public Transform gun1;
+    public Transform gun2;
+    public Transform gun3;
+    public Transform gun4;
+    public float fireForce = 8f;
+    private float moveSpeed = 0.2f;
 
     private float fireDelay;
     private float time = 0;
@@ -21,7 +24,7 @@ public class EnemyController : MonoBehaviour
 
     void Start()
     {
-        fireDelay = Random.Range(0.9f, 2.6f);
+        fireDelay = 1.2f;
         playerController = GameObject.Find("Player").GetComponent<PlayerController>();
     }
 
@@ -31,7 +34,10 @@ public class EnemyController : MonoBehaviour
 
         if (time > fireDelay)
         {
-            Fire();
+            Fire(gun1);
+            Fire(gun2);
+            Fire(gun3);
+            Fire(gun4);
             time = 0;
         }
 
@@ -44,11 +50,11 @@ public class EnemyController : MonoBehaviour
     }
 
 
-    public void Fire()
+    public void Fire(Transform gun)
     {
-        GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+        GameObject bullet = Instantiate(bulletPrefab, gun.position, gun.rotation);
         bullet.transform.parent = transform;
-        bullet.GetComponent<Rigidbody2D>().AddForce(firePoint.up * fireForce, ForceMode2D.Impulse);
+        bullet.GetComponent<Rigidbody2D>().AddForce(-gun.up * fireForce, ForceMode2D.Impulse);
     }
 
     public void Damage(int damage)
@@ -57,20 +63,15 @@ public class EnemyController : MonoBehaviour
        
         if (life <= 0)
         {
-            playerController.scoreUp(10);
+            playerController.scoreUp(5000);
             this.enabled = false;
             GetComponent<BoxCollider2D>().enabled = false;
             skin.GetComponent<Animator>().Play("Explosion", -1);
-            Invoke("OnExplosionAnimationFinished", 0.5f);
+            Invoke("OnExplosionAnimationFinished", 1f);
         }
     }
 
     void OnExplosionAnimationFinished()
-    {
-        Destroy(gameObject);
-    }
-
-    void OnBecameInvisible()
     {
         Destroy(gameObject);
     }

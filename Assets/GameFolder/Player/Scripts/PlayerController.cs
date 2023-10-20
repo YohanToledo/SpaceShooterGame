@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
     private int playerScore = 0;
     public float moveSpeed = 10f;
     public Rigidbody2D rb;
+    private string currentScene;
    
 
     Vector2 moveDirection;
@@ -26,17 +27,26 @@ public class PlayerController : MonoBehaviour
     public Text playerScoreText;
 
     public GameObject gameOverScreen;
+    public Transform pauseScreen;
     
 
     private void Start()
     {
         DontDestroyOnLoad(transform.gameObject);
+        currentScene = SceneManager.GetActiveScene().name;
     }
 
 
     // Update is called once per frame
     void Update()
     {
+        if (!SceneManager.GetActiveScene().name.Equals(currentScene))
+        {
+            life = 5;
+            playerScore = 0;
+            currentScene = SceneManager.GetActiveScene().name;
+        }
+
         float moveX = Input.GetAxisRaw("Horizontal");
         float moveY = Input.GetAxisRaw("Vertical");
 
@@ -50,8 +60,13 @@ public class PlayerController : MonoBehaviour
         playerLife.text = "x" + life.ToString();
         playerScoreText.text = playerScore.ToString() + " pontos";
 
+        if (Input.GetButtonDown("Cancel"))
+        {
+            pauseScreen.GetComponent<PauseMenuController>().enabled = !pauseScreen.GetComponent<PauseMenuController>().enabled;
+        }
 
-        if(playerScore >= 30)
+
+        if (currentScene.Equals("Fase1") && playerScore >= 30)
         {
             SceneManager.LoadScene("Fase2");
         }
@@ -90,10 +105,10 @@ public class PlayerController : MonoBehaviour
 
     void OnExplosionAnimationFinished()
     {
-        DestroyPlayer();
         Time.timeScale = 0f;
         gameOverScreen.SetActive(true);
-
+        this.enabled = false;
+        //DestroyPlayer();
     }
 
     public void DestroyPlayer()
