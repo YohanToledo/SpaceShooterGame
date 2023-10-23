@@ -22,31 +22,35 @@ public class BulletController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        string parentName = transform.parent.name;
+        string collisionParentName = collision.transform.name;
 
-        if (!transform.parent.name.Equals(collision.transform.name))
+        if(!parentName.Equals(collisionParentName))
         {
-
-            if(transform.parent.name.Equals("Player") && collision.transform.name.Equals("Enemy"))
+            if(parentName.Equals("Enemy") && collisionParentName.Equals("Boss") || parentName.Equals("Boss") && collisionParentName.Equals("Enemy"))
             {
-                Destroy(gameObject);
+                //do nothing
             }
-
-            if (transform.parent.name.Equals("Player") && collision.transform.name.Equals("Boss"))
+            else
             {
-                Destroy(gameObject);
+                if (parentName.Equals("Enemy") && collision.CompareTag("Boss"))
+                {
+                    //do nothing
+
+                }
+
+                else if (parentName.Equals("Boss") && collision.CompareTag("Enemy"))
+                {
+                    //do nothing
+
+                }
+                else
+                {
+                    Destroy(gameObject);
+                }
+                
             }
-
-            if (transform.parent.name.Equals("Boss") && collision.transform.name.Equals("Player"))
-            {
-                Destroy(gameObject);
-            }
-
-            if (transform.parent.name.Equals("Enemy") && collision.transform.name.Equals("Player"))
-            {
-                Destroy(gameObject);
-            }
-
-
+        
 
             if (collision.CompareTag("Player"))
             {
@@ -54,19 +58,21 @@ public class BulletController : MonoBehaviour
                 collision.GetComponent<PlayerController>().Damage(1);
             }
 
-            if (transform.parent.name.Equals("Player") && collision.CompareTag("Enemy"))
+            if (parentName.Equals("Player") && collision.CompareTag("Enemy"))
             {
                 Destroy(gameObject);
                 collision.GetComponent<EnemyController>().Damage(1);
 
             }
 
-            if (transform.parent.name.Equals("Player") && collision.CompareTag("Boss"))
+            if (parentName.Equals("Player") && collision.CompareTag("Boss"))
             {
                 Destroy(gameObject);
                 collision.GetComponent<BossController>().Damage(1);
 
             }
+
+           
         }
     }
 
