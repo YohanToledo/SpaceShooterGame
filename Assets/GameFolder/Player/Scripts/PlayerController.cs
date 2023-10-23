@@ -28,12 +28,16 @@ public class PlayerController : MonoBehaviour
 
     public GameObject gameOverScreen;
     public Transform pauseScreen;
-    
+
+    public AudioSource audioSource;
+    public AudioClip laserAudio;
+
 
     private void Start()
     {
         DontDestroyOnLoad(transform.gameObject);
         currentScene = SceneManager.GetActiveScene().name;
+        audioSource = GetComponent<AudioSource>();
     }
 
 
@@ -81,6 +85,7 @@ public class PlayerController : MonoBehaviour
 
     public void Fire()
     {
+        audioSource.PlayOneShot(laserAudio, 1);
         GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
         bullet.transform.parent = transform;
         bullet.GetComponent<Rigidbody2D>().AddForce(firePoint.up * fireForce, ForceMode2D.Impulse);

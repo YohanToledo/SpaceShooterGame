@@ -5,7 +5,7 @@ using UnityEngine;
 public class BossController : MonoBehaviour
 {
 
-    private int life = 20;
+    public int life = 20;
     public Transform skin;
 
     public GameObject bulletPrefab;
@@ -24,7 +24,7 @@ public class BossController : MonoBehaviour
 
     void Start()
     {
-        fireDelay = 1.2f;
+        fireDelay = 1.1f;
         playerController = GameObject.Find("Player").GetComponent<PlayerController>();
     }
 
@@ -65,7 +65,7 @@ public class BossController : MonoBehaviour
         {
             playerController.scoreUp(5000);
             this.enabled = false;
-            GetComponent<BoxCollider2D>().enabled = false;
+            GetComponent<CapsuleCollider2D>().enabled = false;
             skin.GetComponent<Animator>().Play("Explosion", -1);
             Invoke("OnExplosionAnimationFinished", 1f);
         }

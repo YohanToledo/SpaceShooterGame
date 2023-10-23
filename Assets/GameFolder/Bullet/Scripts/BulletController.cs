@@ -25,16 +25,46 @@ public class BulletController : MonoBehaviour
 
         if (!transform.parent.name.Equals(collision.transform.name))
         {
-            Destroy(gameObject);
+
+            if(transform.parent.name.Equals("Player") && collision.transform.name.Equals("Enemy"))
+            {
+                Destroy(gameObject);
+            }
+
+            if (transform.parent.name.Equals("Player") && collision.transform.name.Equals("Boss"))
+            {
+                Destroy(gameObject);
+            }
+
+            if (transform.parent.name.Equals("Boss") && collision.transform.name.Equals("Player"))
+            {
+                Destroy(gameObject);
+            }
+
+            if (transform.parent.name.Equals("Enemy") && collision.transform.name.Equals("Player"))
+            {
+                Destroy(gameObject);
+            }
+
+
 
             if (collision.CompareTag("Player"))
             {
+                Destroy(gameObject);
                 collision.GetComponent<PlayerController>().Damage(1);
             }
 
-            if (collision.CompareTag("Enemy"))
+            if (transform.parent.name.Equals("Player") && collision.CompareTag("Enemy"))
             {
+                Destroy(gameObject);
                 collision.GetComponent<EnemyController>().Damage(1);
+
+            }
+
+            if (transform.parent.name.Equals("Player") && collision.CompareTag("Boss"))
+            {
+                Destroy(gameObject);
+                collision.GetComponent<BossController>().Damage(1);
 
             }
         }

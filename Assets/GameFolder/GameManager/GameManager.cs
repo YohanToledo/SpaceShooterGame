@@ -13,13 +13,13 @@ public class GameManager : MonoBehaviour
 
     private bool isInvokedBoss;
 
-    // Start is called before the first frame update
+    
     void Start()
     {
         isInvokedBoss = false;
         if (SceneManager.GetActiveScene().name.Equals("Fase1"))
         { 
-            InvokeRepeating("InstantiateEnemy", 1f, 2f);
+            InvokeRepeating("InstantiateEnemy", 1f, 1f);
         }
     }
 
@@ -30,17 +30,16 @@ public class GameManager : MonoBehaviour
         Destroy(enemy, 20);
 
 
-        if (SceneManager.GetActiveScene().name.Equals("Fase2") && !isInvokedBoss)
-        {
-            Invoke("InstantiateBoss", 2f);
-            isInvokedBoss = true;
-        }
+        //if (SceneManager.GetActiveScene().name.Equals("Fase2") && !isInvokedBoss)
+        //{
+        //    Invoke("InstantiateBoss", 2f);
+        //    isInvokedBoss = true;
+        //}
 
     }
 
-    public void InstantiateBoss()
-    {
-        print("teste");
-        Instantiate(bossPrefab, new Vector3(0,9), Quaternion.identity);
-    }
+    //public void InstantiateBoss()
+    //{
+    //    Instantiate(bossPrefab, new Vector3(0,9), Quaternion.identity);
+    //}
 }
