@@ -30,8 +30,8 @@ public class PlayerController : MonoBehaviour
     public Transform pauseScreen;
 
     public AudioSource audioSource;
-    public AudioClip laserAudio;
-
+    public AudioClip explosionAudio;
+    public AudioClip damageAudio;
 
     private void Start()
     {
@@ -85,7 +85,6 @@ public class PlayerController : MonoBehaviour
 
     public void Fire()
     {
-        audioSource.PlayOneShot(laserAudio, 1);
         GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
         bullet.transform.parent = transform;
         bullet.GetComponent<Rigidbody2D>().AddForce(firePoint.up * fireForce, ForceMode2D.Impulse);
@@ -94,11 +93,14 @@ public class PlayerController : MonoBehaviour
     public void Damage(int damage)
     {
         skin.GetComponent<Animator>().Play("Damage", -1);
+        audioSource.PlayOneShot(damageAudio, 1);
+
         life -= damage;
 
         if (life <= 0)
         {
             skin.GetComponent<Animator>().Play("Explosion", -1);
+            audioSource.PlayOneShot(explosionAudio, 1);
             Invoke("OnExplosionAnimationFinished", 0.5f);
         }
     }

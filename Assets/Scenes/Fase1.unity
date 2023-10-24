@@ -731,7 +731,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -6, y: -183}
-  m_SizeDelta: {x: 300, y: 100}
+  m_SizeDelta: {x: 400, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &244245947
 MonoBehaviour:
@@ -943,15 +943,15 @@ RectTransform:
   m_GameObject: {fileID: 337942884}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 3, y: 3, z: 1}
+  m_LocalScale: {x: 6, y: 6, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1211509689}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchoredPosition: {x: 2, y: 1}
+  m_SizeDelta: {x: 100, y: 13.174}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &337942886
 MonoBehaviour:
@@ -973,7 +973,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: d1646b0e3d0169d4f8494fd00699ca04, type: 3}
+  m_Sprite: {fileID: 21300000, guid: cbce6ad8b0755df48a4dc31609574df0, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -1676,15 +1676,15 @@ RectTransform:
   m_GameObject: {fileID: 995572769}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 3, y: 3, z: 1}
+  m_LocalScale: {x: 4, y: 4, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 244245946}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchoredPosition: {x: 2, y: 1.635}
+  m_SizeDelta: {x: 100, y: 20.817}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &995572771
 MonoBehaviour:
@@ -1829,7 +1829,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 1, y: 94}
-  m_SizeDelta: {x: 300, y: 100}
+  m_SizeDelta: {x: 600, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1211509690
 MonoBehaviour:
@@ -2506,7 +2506,8 @@ MonoBehaviour:
   gameOverScreen: {fileID: 332503998}
   pauseScreen: {fileID: 50816986}
   audioSource: {fileID: 1821667812}
-  laserAudio: {fileID: 8300000, guid: a67212cc715d089429b0e2b5d49831ca, type: 3}
+  explosionAudio: {fileID: 8300000, guid: da266236f1a16604b9010b001267485a, type: 3}
+  damageAudio: {fileID: 8300000, guid: 7ffbdcb73dda4d949bdcbcc33a0a508d, type: 3}
 --- !u!4 &1821667810
 Transform:
   m_ObjectHideFlags: 0
@@ -2572,11 +2573,11 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: bcf6ab35c531aac498dad488b373aa23, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.524
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0

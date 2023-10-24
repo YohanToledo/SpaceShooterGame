@@ -8,9 +8,13 @@ public class BulletController : MonoBehaviour
 {
     private string currentScene;
 
+    public AudioSource audioSource;
+    public AudioClip shotAudio;
+
     private void Start()
     {
         currentScene = SceneManager.GetActiveScene().name;
+        audioSource.PlayOneShot(shotAudio, 1);
     }
     private void Update()
     {
@@ -38,7 +42,6 @@ public class BulletController : MonoBehaviour
                     //do nothing
 
                 }
-
                 else if (parentName.Equals("Boss") && collision.CompareTag("Enemy"))
                 {
                     //do nothing
