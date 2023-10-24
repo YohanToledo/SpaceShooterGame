@@ -41,7 +41,6 @@ public class PlayerController : MonoBehaviour
     }
 
 
-    // Update is called once per frame
     void Update()
     {
         if (!SceneManager.GetActiveScene().name.Equals(currentScene))
@@ -115,7 +114,6 @@ public class PlayerController : MonoBehaviour
         Time.timeScale = 0f;
         gameOverScreen.SetActive(true);
         this.enabled = false;
-        //DestroyPlayer();
     }
 
     public void DestroyPlayer()

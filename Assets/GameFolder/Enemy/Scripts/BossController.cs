@@ -5,16 +5,12 @@ using UnityEngine;
 public class BossController : MonoBehaviour
 {
 
-    public int life = 20;
+    public int life = 30;
     public Transform skin;
 
     public GameObject bulletPrefab;
-    public Transform gun1;
-    public Transform gun2;
-    public Transform gun3;
-    public Transform gun4;
+    public Transform[] guns;
     public float fireForce = 8f;
-    private float moveSpeed = 0.2f;
 
     private float fireDelay;
     private float time = 0;
@@ -30,25 +26,18 @@ public class BossController : MonoBehaviour
 
     void Update()
     {
-        move();
 
         if (time > fireDelay)
         {
-            Fire(gun1);
-            Fire(gun2);
-            Fire(gun3);
-            Fire(gun4);
+            foreach (Transform gun in guns)
+            {
+                Fire(gun);
+            }
             time = 0;
         }
 
         time += Time.deltaTime;
     }
-
-    void move()
-    {
-        transform.position += Vector3.down * moveSpeed * Time.deltaTime;
-    }
-
 
     public void Fire(Transform gun)
     {
