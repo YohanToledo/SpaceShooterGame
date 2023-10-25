@@ -19,7 +19,7 @@ public class PlayerController : MonoBehaviour
 
     public GameObject bulletPrefab;
     public Transform firePoint;
-    public float fireForce = 15f;
+    public float fireForce = 18f;
 
     public Transform skin;
 
@@ -69,7 +69,7 @@ public class PlayerController : MonoBehaviour
         }
 
 
-        if (currentScene.Equals("Fase1") && playerScore >= 30)
+        if (currentScene.Equals("Fase1") && playerScore >= 80)
         {
             SceneManager.LoadScene("Fase2");
         }

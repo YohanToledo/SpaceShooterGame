@@ -17,6 +17,10 @@ public class BossController : MonoBehaviour
 
     private PlayerController playerController;
 
+    public AudioSource audioSource;
+    public AudioClip explosionAudio;
+    public AudioClip damageAudio;
+
 
     void Start()
     {
@@ -49,13 +53,16 @@ public class BossController : MonoBehaviour
     public void Damage(int damage)
     {
         life -= damage;
-       
+        audioSource.PlayOneShot(damageAudio, 1);
+        skin.GetComponent<Animator>().Play("Damage", -1);
+
         if (life <= 0)
         {
             playerController.scoreUp(5000);
             this.enabled = false;
             GetComponent<CapsuleCollider2D>().enabled = false;
             skin.GetComponent<Animator>().Play("Explosion", -1);
+            audioSource.PlayOneShot(explosionAudio, 1);
             Invoke("OnExplosionAnimationFinished", 1f);
         }
     }
